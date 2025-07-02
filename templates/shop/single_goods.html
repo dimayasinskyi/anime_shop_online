@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="contaner my-5">
+    <div class="row">
+        <div class="col">
+            <img src="{{ good.image.url }}" alt="{{ good.title }}" style="width: 30rem; border-radius: 2%;">
+        </div>
+        <div class="col">
+            <h1>{{ good.title }}</h1>
+            <p class="paragraph">Description: {{ good.description }}</p>
+            <p class="paragraph">Comment Qty: {{ good.com_qty }}</p>
+            <p class="paragraph">Sel Qty: {{ good.sel_qty }}</p>
+            <p class="paragraph">Price: {{ good.price }}$</p>
+            <hr>
+            <a href="{% url 'shop:pay_good' good.pk %}" class="btn btn-primary">Buy</a>
+            <a href="{% url 'user:save_add' good.id %}"
+                class="btn {% if save %} btn-primary {% else %} btn-secondary {% endif %}">Save
+            </a>
+            <a href="{% url 'user:basket_add' good.pk %}"
+                class="btn mt-1 {% if in_basket %} disabled {% else %} btn-secondary {% endif %}">
+                {% if in_basket %} In the basket {% else %} Add to basket {% endif %}
+            </a>
+        </div>
+    </div>
+    {% include 'user/comment.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<h3>Comments</h3>
+
+
+
+<!-- Виведення коментарів -->
+<div id="comments">
+    {% for comment in comments %}
+    <div class="comment">
+        <p><strong>{{ comment.user.username }}</strong> - {{ comment.create_time }}
+            {% if comment.user == request.user %}
+            <a href="{% url 'user:delete_comment' comment.id %}" class="btn btn-primary p-1 ml-2">delete</a>
+            {% endif %}
+        </p>
+        <p>{{ comment.text }}</p>
+    </div>
+    <hr>
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+</div>
+
+<!-- Форма додавання коментаря -->
+<div id="add-comment">
+    <h4>Leave a comment</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit">Post Comment</button>
+    </form>
+</div>

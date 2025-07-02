@@ -1,0 +1,25 @@
+{% extends 'authentication.html' %}
+
+
+{% block content %}
+<form method="post">
+    <h2>Register</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if form.errors %}
+    <ul>
+        {% for field in form %}
+        {% for error in field.errors %}
+        <li>{{ field.label }}: {{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <button type="submit" class="btn btn-primary">Register</button>
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">Register with google</a>
+    <a href="{% url 'user:login' %} " class="btn btn-secondary">Login in</a>
+</form>
+{% endblock %}

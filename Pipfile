@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-tastypie = "*"
+pillow = "*"
+django-pagination = "*"
+django-image-cropping = "*"
+easy-thumbnails = "*"
+stripe = "*"
+social-auth-app-django = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

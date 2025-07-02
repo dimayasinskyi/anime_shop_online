@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h3>Basket</h3>
+{% if baskets %}
+<form class="row g-3" method="post">
+    {% csrf_token %}
+    {% for basket in baskets %}
+    <div style="border-bottom: 1px solid black; border-top: 1px solid black; padding: 10px;">
+        <label for="name_good">Нame good</label>
+        <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" value="{{ basket.good }}"
+            aria-label=".form-control-lg example" id="name_good" readonly>
+        <label for="good_price">Price</label>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+            id="good_price" value="{{ basket.good.price }} $" readonly>
+        <label for="quantity">Quantity</label>
+        <input class="form-control form-control-sm" type="number" placeholder=".form-control-sm"
+            aria-label=".form-control-sm example" value="{{ basket.quantity }}" id="quantity" readonly>
+        <a class="btn btn-primary m-1 ml-0" href="{% url 'user:add_quantity' basket.id %}">Add</a>
+        <a class="btn btn-primary" href="{% url 'user:subtract_quantity' basket.id %}">subtract</a>
+        <a class="btn btn-primary" href="{% url 'user:basket_del' basket.id %}">delete</a>
+        <br>
+        <label for="sum">Sum</label>
+        <input class="form-control form-control-sm" type="number" placeholder=".form-control-sm"
+            aria-label=".form-control-sm example" value="{{ basket.sum }}" id="sum" readonly>
+    </div>
+    {% endfor %}
+    <label for="total_sum">Total sum</label>
+    <input class="form-control form-control-sm" type="number" placeholder=".form-control-sm"
+        aria-label=".form-control-sm example" value="{{ total_sum }}" id="total_sum" readonly>
+    <a class="btn btn-primary" href="{% url 'user:basket_all_del' %}">delete basket</a>
+    <a class="btn btn-primary mb-3" href="{% url 'order:check_basket' %}">Pay</a>
+</form>
+{% else %}
+<p>Basket is none</p>
+{% endif %}
+{% endblock %}

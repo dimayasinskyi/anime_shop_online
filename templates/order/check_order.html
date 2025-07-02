@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Order confirmation</h3>
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <h5 class="card-title">Contact details</h5>
+        <p><strong>Name:</strong> {{ request.user.username }}</p>
+        <p><strong>Phone number:</strong>{% if request.user.phone %} {{ request.user.phone }} {% else %} No number {% endif %}</p>
+        <p><strong>Email:</strong>{% if request.user.email %} {{ request.user.email }} {% else %} No email {% endif %}
+        </p>
+
+        <hr>
+
+        <h5 class="card-title">Delivery address</h5>
+        <p><strong>State:</strong> {{ form.state }}</p>
+        <p><strong>City:</strong> {{ form.city }}</p>
+        <p><strong>Address:</strong> {{ form.address }}</p>
+        <p><strong>Zip:</strong> {{ form.zip }}</p>
+
+        <hr>
+
+        <h5 class="card-title">Order information</h5>
+        <ul>
+          {% if goods.count > 1 %}
+
+          {% for good in goods %}
+          <li>{{ good.good.title }} — {{ good.quantity }} qty. — {{ good.sum }}₴</li>
+          {% endfor %}
+
+          {% else %}
+          <li>{{ good.title }} — 1 qty. — {{ good.price }}₴</li>
+          {% endif %}
+        </ul>
+        <p><strong>Title sum:</strong> {{ total_sum }}₴</p>
+        <div class="mt-4 d-flex justify-content-between">
+        <button type="submit" class="btn btn-success">Confirm order and pay now</button>
+        </div>
+      </div>
+  </div>
+</div>
+</form>
+
+
+
+{% endblock %}

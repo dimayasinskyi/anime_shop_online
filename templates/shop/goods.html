@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+
+{% load cropping thumbnail %}
+
+{% block content %}
+
+<body>
+  {% if mode != 'save' %}
+  <nav style="text-align: center;">
+    <form method="get">
+      <input type="text" name="find" placeholder="Name good"
+        class="form-control mt-2" value="{{ request.GET.find }}"></input>
+      <button type="submit" class="btn btn-primary">Find</button>
+    </form>
+  </nav>
+  {% endif %}
+  <div class="container" style="flex-wrap: wrap;">
+    <div>
+      <ul class="list-group list-group-flush">
+        {% for category in categories %}
+        <li class="list-group-item" {% if request.GET.cate == category.id|stringformat:'s' %} style="background-color: rgba(0, 0, 0, 0.032);" {% endif %}>
+          <a href="{% if not request.GET.cate %} ?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}cate={{ category.id }}{% endif %}">
+            {{ category.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-4">
+      {% for good in goods %}
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          {% cropped_thumbnail good.object "cropping" scale=1 as thumb %}
+          <img src="{{ thumb }}" width="{{ thumb.width }}" height="{{ thumb.height }}">
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ good.object.title }}</h5>
+            <p class="card-text">Description: {{ good.object.description }}</p>
+            <hr>
+            <li class="list-group-item">Comment: {{ good.object.com_qty }}</li>
+            <hr>
+            <li class="list-group-item">Category: {{ good.object.category }}</li>
+            <hr>
+            <li class="list-group-item">Price: {{ good.object.price }}$</li>
+            <hr>
+            <!-- <a href="{% url 'shop:pay_good' good.object.pk %}" class="btn btn-primary">Buy</a> -->
+            <a href="{% url 'order:check_order' good.object.pk %}" class="btn btn-primary">Buy</a>
+            <a href="{% url 'shop:single_goods' good.object.pk %}" class="btn btn-secondary">Delails</a>
+            <br>
+            <a href="{% url 'user:basket_add' good.object.pk %}"
+              class="btn mt-1 {% if good.in_basket %} disabled {% else %} btn-secondary {% endif %}">
+              {% if good.in_basket %} In the basket {% else %} Add to basket {% endif %}
+            </a>
+            {% if save %}
+            <a href="{% url 'user:save_add' good.object.pk %}"
+              class="btn mt-1 {% if not user.is_authenticated %} disabled {% elif good.is_saved %} btn-primary {% else %} btn-secondary {% endif %}">Save</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      Don't find this good
+      {% endfor %}
+    </div>
+  </div>
+  <div class="mb-4">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    </div>
+    <div class="btn-group " role="group" aria-label="Third group">
+      <a type="button" class="btn {% if not page_obj.has_previous %} disabled {% else %} btn-primary {% endif %}"
+        href="{% if page_obj.has_previous %} ?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }} {% else %} # {% endif %}">last</a>
+    </div>
+
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      {% for page in page_obj.paginator.page_range %}
+      <a class="btn btn-secondary {% if page == page_obj.number %}active{% endif %}"
+        href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page }}">
+        {{ page }}
+      </a>
+      {% endfor %}
+    </div>
+    <div class="btn-group" role="group" aria-label="Third group">
+      <a type="button" class="btn {% if not page_obj.has_next %} disabled {% else %} btn-info {% endif %}"
+        href="{% if page_obj.has_next %} ?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }} {% else %} # {% endif %} ">Next</a>
+    </div>
+  </div>
+  </div>
+</body>
+{% endblock %}
