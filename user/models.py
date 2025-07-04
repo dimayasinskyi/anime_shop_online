@@ -11,7 +11,7 @@ class User(AbstractUser):
         ('no_info', 'No Info'),
     ]
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
-    gender = models.CharField(max_length=30, choices=GENDER_CHOICES,default='no info')
+    gender = models.CharField(max_length=30, choices=GENDER_CHOICES, default='no info')
     address = models.TextField(null=True, blank=True)
     address2 = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)

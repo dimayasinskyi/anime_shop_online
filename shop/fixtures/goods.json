@@ -31,7 +31,7 @@
     "model": "shop.goods",
     "pk": 11,
     "fields": {
-      "title": "Attack on Titan � Wall Titans Art Poster",
+      "title": "Attack on Titan - Wall Titans Art Poster",
       "description": "High-resolution matte poster featuring the colossal Wall Titans from \"Attack on Titan\". Printed on d",
       "com_qty": 20,
       "sel_qty": 11,
@@ -45,7 +45,7 @@
     "model": "shop.goods",
     "pk": 12,
     "fields": {
-      "title": "Studio Ghibli � Spirited Away Art Print",
+      "title": "Studio Ghibli - Spirited Away Art Print",
       "description": "Elegant art print of Chihiro and Haku, inspired by the iconic bathhouse scene. Museum-quality paper,",
       "com_qty": 25,
       "sel_qty": 9,
@@ -87,7 +87,7 @@
     "model": "shop.goods",
     "pk": 15,
     "fields": {
-      "title": "Akatsuki Cloud Hoodie � Unisex",
+      "title": "Akatsuki Cloud Hoodie - Unisex",
       "description": "Black cotton hoodie with red Akatsuki cloud symbols from Naruto Shippuden. Soft fleece lining, avail",
       "com_qty": 30,
       "sel_qty": 12,
@@ -115,7 +115,7 @@
     "model": "shop.goods",
     "pk": 17,
     "fields": {
-      "title": "Death Note � Complete Black Edition Vol. 1",
+      "title": "Death Note - Complete Black Edition Vol. 1",
       "description": "A premium omnibus edition that includes volumes 1 & 2 of the legendary Death Note manga. Features la",
       "com_qty": 25,
       "sel_qty": 10,
@@ -130,7 +130,7 @@
     "pk": 18,
     "fields": {
       "title": "My Hero Academia Vol. 1",
-      "description": "The beginning of Izuku Midoriya�s journey to become a hero. English-translated paperback edition by",
+      "description": "The beginning of Izuku Midoriya's journey to become a hero. English-translated paperback edition by",
       "com_qty": 40,
       "sel_qty": 18,
       "price": "11.99",

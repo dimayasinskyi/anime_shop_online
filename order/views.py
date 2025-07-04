@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .form import CheckCorrectOrderForm
+from .forms import CheckCorrectOrderForm
 from .models import Order
 from shop.models import Goods
 from user.models import Basket
@@ -13,7 +13,6 @@ def check_correct_order(request, good_id):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.user = request.user
-            obj.goods = Goods.objects.get(id=good_id)
             obj.save()
             return redirect('shop:pay_good', good_id=good_id)
     else:
@@ -37,7 +36,6 @@ def check_correct_basketr(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.user = request.user
-            obj.goods = Basket.objects.get()
             obj.save()
             return redirect('shop:pay')
     else:
@@ -56,7 +54,17 @@ def check_correct_basketr(request):
 
 
 def orders(request):
-    return render(request, 'order/orders.html', )
+    orders = Order.objects.all()
+    context = {
+        'order_new': orders.filter(status='new'),
+        'order_processing': orders.filter(status='processing'),
+        'order_shipped': orders.filter(status='shipped'),
+        'order_on_hold': orders.filter(status='on_hold'),
+        'order_cancelled': orders.filter(status='delivered'),
+        'order_returned': orders.filter(status='cancelled'),
+        'order_failed': orders.filter(status='failed'),
+    }
+    return render(request, 'order/order_list.html', )
 
 def order(request, order_id):
     context = {

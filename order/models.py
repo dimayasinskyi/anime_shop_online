@@ -1,9 +1,15 @@
 from django.db import models
 
-from shop.models import Goods
+
 from user.models import User
 
-# Create your models here.
+
+class OrderGood(models.Model):
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    good = models.ForeignKey('shop.Goods', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('new', 'New'),
@@ -16,7 +22,7 @@ class Order(models.Model):
         ('on_hold', 'On hold'),
     ]
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    goods = models.ManyToManyField(to=Goods)
+    goods = models.ManyToManyField(to='shop.Goods', through='OrderGood')
     status = models.CharField(choices=STATUS_CHOICES, default='new', max_length=20)
     address = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
@@ -24,3 +30,4 @@ class Order(models.Model):
     zip = models.SmallIntegerField(null=True, blank=True)
     paid = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)
+

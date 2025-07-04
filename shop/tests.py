@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.db.models.signals import pre_save
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from decimal import Decimal
+import re, glob, os
 
 from .models import Goods, Categories
 
@@ -41,7 +41,13 @@ class GoodAndCategoryModelTest(TestCase):
         goods_in_category = self.category.goods_set.all()
         self.assertIn(good, goods_in_category)
         self.assertEqual(goods_in_category.count(), 1)
-    
+
+        self.assertTrue(os.path.isfile(good.image.path), msg="Зображення не завантажене")
+
+        url = os.path.splitext(re.sub(r'_[A-Za-z0-9]+(?=\.)', '', good.image.path))[0]
+        good.delete()
+        for img in glob.glob(url+'*'):
+            self.assertFalse(os.path.isfile(img), msg="Файл зображення не видалено автоматично")
 
 
 
@@ -53,9 +59,6 @@ class GoodAndCategoryModelTest(TestCase):
 #  Перевірка __str__ методів (str(good) == good.title)
 #  Валідація кількостей (наприклад, sel_qty <= com_qty)
 #  Зв’язок між товарами та категоріями
-
-# 🔹 Варто ще:
-
 #  Перевірка збереження зображення
 
 # ✅ 2. Тести форм (forms)
@@ -129,3 +132,28 @@ class GoodAndCategoryModelTest(TestCase):
 
 #  Перевірка обробки оплати (якщо є)
 
+
+
+
+
+# Що перевірити або покращити:
+# 1. 🧱 Назви моделей, наприклад Goods
+# Якщо в тебе є модель Goods — краще назвати її Good (в однині).
+
+# Django сам створює таблицю goods, це стандарт.
+
+# 4. 📝 README.md — відсутній
+# Обов'язково додай файл README.md:
+
+
+# 5. 🔐 Секрети в settings.py
+# Якщо в settings.py є SECRET_KEY, краще перенести в .env файл.
+
+# Підключити бібліотеку python-decouple або dotenv.
+
+# python
+# Копіювати
+# Редагувати
+# # settings.py
+# from decouple import config
+# SECRET_KEY = config("SECRET_KEY")

@@ -13,7 +13,7 @@ urlpatterns = [
     path('goods/<str:mode>/', goods, name='goods'),
     # Pay
     path('pay/', create_checkout_session, name='pay'),
-    path('pay/<int:good_id>', create_checkout_session_good, name='pay_good'),
+    path('pay/<int:good_id>/', create_checkout_session_good, name='pay_good'),
 ]
 
 if settings.DEBUG:
