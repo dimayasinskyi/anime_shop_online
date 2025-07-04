@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from .forms import CheckCorrectOrderForm
 from .models import Order
-from shop.models import Goods
+from shop.models import Good
 from user.models import Basket
 
 
@@ -16,7 +16,7 @@ def check_correct_order(request, good_id):
             obj.save()
             return redirect('shop:pay_good', good_id=good_id)
     else:
-        good = Goods.objects.get(id=good_id)
+        good = Good.objects.get(id=good_id)
         context = {
             'form': CheckCorrectOrderForm(initial={
                 'state': request.user.state,
@@ -47,7 +47,7 @@ def check_correct_basketr(request):
                 'city': request.user.city,
                 'zip': request.user.zip,
             }),
-            'goods': basket,
+            'good': basket,
             'total_sum': basket.total_sum(),
         } 
         return render(request, 'order/check_order.html', context)

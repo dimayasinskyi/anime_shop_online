@@ -6,7 +6,7 @@ from datetime import timedelta
 import re, glob, os
 
 from .models import User, Basket, SaveGood, Comment
-from shop.models import Categories, Goods
+from shop.models import Category, Good
 
 class AuthenticationModelTest(TestCase):
     def setUp(self):
@@ -16,8 +16,8 @@ class AuthenticationModelTest(TestCase):
             content_type='image/gif',
         )
         self.user = User.objects.create(first_name='Test_first_name', last_name='Test_last_name', username='test_user', email='test_email@gmail.com', password='test_password', gender='other', address='This_is_test_address', address2='This_is_test_address2', city='Test_city', state='Test_state', zip=111111,image=image)
-        category = Categories.objects.create(title='Test category')
-        self.good = Goods.objects.create(title='Test good', description='This is test good', com_qty=500, sel_qty=500, price=500.00, image=image, category=category, cropping='1x1')
+        category = Category.objects.create(title='Test category')
+        self.good = Good.objects.create(title='Test good', description='This is test good', com_qty=500, sel_qty=500, price=500.00, image=image, category=category, cropping='1x1')
         self.basket = Basket.objects.create(user=self.user, good=self.good, quantity=2)
         self.savegood = SaveGood.objects.create(user=self.user, good=self.good)
         self.comment = Comment.objects.create(user=self.user, good=self.good, text='This_is_test_text')

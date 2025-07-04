@@ -1,11 +1,11 @@
 from django.urls import path, include
-from api.models import GoodsResource
+from api.models import GoodResource
 from tastypie.api import Api
 
-goodsresource = GoodsResource()
+goodresource = GoodResource()
 
 api = Api(api_name='v1')
-api.register(goodsresource)
+api.register(goodresource)
 
 
 app_name='api'

@@ -1,12 +1,12 @@
 from django.shortcuts import render
 
-from shop.models import Goods
+from shop.models import Good
 from tastypie.resources import ModelResource
 
 
-class GoodsResource(ModelResource):
+class GoodResource(ModelResource):
     class Meta:
-        queryset = Goods.objects.all()
-        resource_name = 'goods'
+        queryset = Good.objects.all()
+        resource_name = 'good'
         allowed_methods = ['get']
 

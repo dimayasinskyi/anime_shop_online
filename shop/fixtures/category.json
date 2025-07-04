@@ -1,21 +1,21 @@
 [
   {
-    "model": "shop.categories",
+    "model": "shop.category",
     "pk": 1,
     "fields": { "title": "Clothing & Accessori" }
   },
   {
-    "model": "shop.categories",
+    "model": "shop.category",
     "pk": 2,
     "fields": { "title": "Character Figures" }
   },
   {
-    "model": "shop.categories",
+    "model": "shop.category",
     "pk": 3,
     "fields": { "title": "Posters & Art" }
   },
   {
-    "model": "shop.categories",
+    "model": "shop.category",
     "pk": 4,
     "fields": { "title": "Manga & Books" }
   }

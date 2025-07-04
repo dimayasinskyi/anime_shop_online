@@ -6,7 +6,7 @@ from user.models import User
 
 class OrderGood(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    good = models.ForeignKey('shop.Goods', on_delete=models.CASCADE)
+    good = models.ForeignKey('shop.Good', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     
 
@@ -22,7 +22,7 @@ class Order(models.Model):
         ('on_hold', 'On hold'),
     ]
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    goods = models.ManyToManyField(to='shop.Goods', through='OrderGood')
+    goods = models.ManyToManyField(to='shop.Good', through='OrderGood')
     status = models.CharField(choices=STATUS_CHOICES, default='new', max_length=20)
     address = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)

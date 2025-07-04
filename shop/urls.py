@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import goods, single_goods, create_checkout_session, create_checkout_session_good
+from .views import goods, single_good, create_checkout_session, create_checkout_session_good
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -7,10 +7,10 @@ from django.conf.urls.static import static
 app_name = 'shop'
 urlpatterns = [
     # Index
-    path('', goods, name='goods'),
+    # path('', good, name='goods'),
     # Product
-    path('good/<int:good_id>/', single_goods, name='single_goods'),
     path('goods/<str:mode>/', goods, name='goods'),
+    path('good/<int:good_id>/', single_good, name='single_goods'),
     # Pay
     path('pay/', create_checkout_session, name='pay'),
     path('pay/<int:good_id>/', create_checkout_session_good, name='pay_good'),

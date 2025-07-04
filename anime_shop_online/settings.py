@@ -32,9 +32,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
-
-
 AUTH_USER_MODEL = 'user.User'
 
 INSTALLED_APPS = [
@@ -159,8 +156,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# STRIPE TEST
-
 
 # AUTHENTICATION 
 # GOOGLE TEST
@@ -168,7 +163,6 @@ AUTHENTICATION_BACKENDS = (
     "social_core.backends.google.GoogleOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 )
-
 
 
 LOGIN_REDIRECT_URL = reverse_lazy('shop:goods', kwargs={'mode':'catalog'})

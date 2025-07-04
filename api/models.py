@@ -1,12 +1,12 @@
-from shop.models import Goods
+from shop.models import Good
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
 from .authentication import CustomAuthentication
 
 
-class GoodsResource(ModelResource):
+class GoodResource(ModelResource):
     class Meta:
-        queryset = Goods.objects.all()
+        queryset = Good.objects.all()
         resource_name = 'goods'
         allowed_methods = ['get', 'post', 'delete']
         authentication = CustomAuthentication()

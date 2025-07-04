@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 
 from .forms import RegisterForm, UserProfileForm
-from shop.models import Goods
+from shop.models import Good
 from .models import Basket, SaveGood, Comment
 
 # Register, login in and logout
@@ -74,7 +74,7 @@ def profile_view(request):
 # Basket
 @login_required()
 def basket_add(request, good_id):
-    good = Goods.objects.get(id=good_id)
+    good = Good.objects.get(id=good_id)
     baskets = Basket.objects.filter(user=request.user, good=good)
 
     if not baskets.exists():
@@ -147,7 +147,7 @@ def save_goods(request, page_number=1):
 
 @login_required()
 def add_in_save_good(request, good_id):
-    good = get_object_or_404(Goods, id=good_id)
+    good = get_object_or_404(Good, id=good_id)
     if not SaveGood.objects.filter(user=request.user, good=good).exists():
         save = SaveGood.objects.create(user=request.user, good=good)
         save.save()

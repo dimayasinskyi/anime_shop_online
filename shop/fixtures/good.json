@@ -1,6 +1,6 @@
 [
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 9,
     "fields": {
       "title": "Naruto Uzumaki (Shippuden Ver.) Figure",
@@ -8,13 +8,13 @@
       "com_qty": 15,
       "sel_qty": 7,
       "price": "34.99",
-      "image": "goods/Naruto_Uzumaki_Shippuden_Ver._Figure.jpg.jpg",
+      "image": "goods/image/Naruto_Uzumaki_Shippuden_Ver._Figure.jpg.jpg",
       "cropping": "0,13,1987,2000",
       "category": 2
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 10,
     "fields": {
       "title": "Sailor Moon Eternal Edition Figure",
@@ -22,13 +22,13 @@
       "com_qty": 10,
       "sel_qty": 3,
       "price": "42.50",
-      "image": "goods/Sailor_Moon_Eternal_Edition_Figure.jpg.jpg",
+      "image": "goods/image/Sailor_Moon_Eternal_Edition_Figure.jpg.jpg",
       "cropping": "0,156,849,1004",
       "category": 2
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 11,
     "fields": {
       "title": "Attack on Titan - Wall Titans Art Poster",
@@ -36,13 +36,13 @@
       "com_qty": 20,
       "sel_qty": 11,
       "price": "14.99",
-      "image": "goods/Attack_on_Titan_Wall_Titans_Art_Poster.jpg",
+      "image": "goods/image/Attack_on_Titan_Wall_Titans_Art_Poster.jpg",
       "cropping": "0,100,657,757",
       "category": 3
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 12,
     "fields": {
       "title": "Studio Ghibli - Spirited Away Art Print",
@@ -50,13 +50,13 @@
       "com_qty": 25,
       "sel_qty": 9,
       "price": "18.00",
-      "image": "goods/Studio_Ghibli_Spirited_Away_Art_Print.jfif",
+      "image": "goods/image/Studio_Ghibli_Spirited_Away_Art_Print.jfif",
       "cropping": "0,43,198,241",
       "category": 3
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 13,
     "fields": {
       "title": "Levi Ackerman (Attack on Titan) Action Figure",
@@ -64,13 +64,13 @@
       "com_qty": 12,
       "sel_qty": 5,
       "price": "39.00",
-      "image": "goods/Levi_Ackerman_Attack_on_Titan_Action_Figure.jpg",
+      "image": "goods/image/Levi_Ackerman_Attack_on_Titan_Action_Figure.jpg",
       "cropping": "0,0,800,800",
       "category": 2
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 14,
     "fields": {
       "title": "Nezuko Kamado (Demon Slayer) Chibi Figure",
@@ -78,13 +78,13 @@
       "com_qty": 18,
       "sel_qty": 8,
       "price": "24.50",
-      "image": "goods/Nezuko_Kamado_Demon_Slayer_Chibi_Figure.jpg",
+      "image": "goods/image/Nezuko_Kamado_Demon_Slayer_Chibi_Figure.jpg",
       "cropping": "0,47,750,797",
       "category": 2
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 15,
     "fields": {
       "title": "Akatsuki Cloud Hoodie - Unisex",
@@ -92,13 +92,13 @@
       "com_qty": 30,
       "sel_qty": 12,
       "price": "49.99",
-      "image": "goods/Akatsuki_Cloud_Hoodie_Unisex.jpg",
+      "image": "goods/image/Akatsuki_Cloud_Hoodie_Unisex.jpg",
       "cropping": "0,0,870,870",
       "category": 1
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 16,
     "fields": {
       "title": "Totoro Canvas Backpack",
@@ -106,13 +106,13 @@
       "com_qty": 20,
       "sel_qty": 6,
       "price": "38.00",
-      "image": "goods/Totoro_Canvas_Backpack.jpg",
+      "image": "goods/image/Totoro_Canvas_Backpack.jpg",
       "cropping": "11,0,1600,1589",
       "category": 1
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 17,
     "fields": {
       "title": "Death Note - Complete Black Edition Vol. 1",
@@ -120,13 +120,13 @@
       "com_qty": 25,
       "sel_qty": 10,
       "price": "22.99",
-      "image": "goods/Death_Note_Complete_Black_Edition_Vol_1.jpg",
+      "image": "goods/image/Death_Note_Complete_Black_Edition_Vol_1.jpg",
       "cropping": "0,45,570,616",
       "category": 4
     }
   },
   {
-    "model": "shop.goods",
+    "model": "shop.good",
     "pk": 18,
     "fields": {
       "title": "My Hero Academia Vol. 1",
@@ -134,7 +134,7 @@
       "com_qty": 40,
       "sel_qty": 18,
       "price": "11.99",
-      "image": "goods/My_Hero_Academia_Vol_1.jpg",
+      "image": "goods/image/My_Hero_Academia_Vol_1.jpg",
       "cropping": "0,36,482,518",
       "category": 4
     }

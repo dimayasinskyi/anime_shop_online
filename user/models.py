@@ -26,7 +26,7 @@ class BasketQuerySet(models.QuerySet):
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    good = models.ForeignKey(to='shop.Goods', on_delete=models.CASCADE)
+    good = models.ForeignKey(to='shop.Good', on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=0)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -44,7 +44,7 @@ class Basket(models.Model):
 
 class SaveGood(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    good = models.OneToOneField(to='shop.Goods', on_delete=models.CASCADE)
+    good = models.OneToOneField(to='shop.Good', on_delete=models.CASCADE)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -52,6 +52,6 @@ class SaveGood(models.Model):
     
 class Comment(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    good = models.ForeignKey(to='shop.Goods', on_delete=models.CASCADE)
+    good = models.ForeignKey(to='shop.Good', on_delete=models.CASCADE)
     text = models.TextField()
     create_time = models.DateTimeField(auto_now_add=True)

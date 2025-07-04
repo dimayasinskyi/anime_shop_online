@@ -4,10 +4,10 @@ import os
 import glob
 import re
 
-from .models import Goods
+from .models import Good
 
 
-@receiver(pre_delete, sender=Goods)
+@receiver(pre_delete, sender=Good)
 def delete_img_and_cropping(sender, instance, **kwargs):
     if instance.image and instance.image.path:
         imgs = os.path.splitext(re.sub(r'_[A-Za-z0-9]+(?=\.)', '', instance.image.path))[0]

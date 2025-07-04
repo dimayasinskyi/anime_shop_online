@@ -25,7 +25,7 @@ class UserProfileForm(UserChangeForm):
         'placeholder': 'Your last name',
         "class": "form-control",
     }))
-    gender = forms.ChoiceField(choices=User.GENDER_CHOICES, widget=forms.Select(attrs={
+    gender = forms.ChoiceField(required=False, choices=User.GENDER_CHOICES, widget=forms.Select(attrs={
         "placeholder": "Choose...", 
         "class": "form-control",
     }))
@@ -44,7 +44,7 @@ class UserProfileForm(UserChangeForm):
         'placeholder': 'Your second address',
         "class": "form-control"
     }))
-    city = forms.CharField(widget=forms.TextInput(attrs={
+    city = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'placeholder': 'Your sity',
         "class": "form-control",
     }))
