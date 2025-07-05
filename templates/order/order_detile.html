@@ -4,40 +4,59 @@
 <div class="container py-5">
   <div class="card shadow-sm mb-4">
     <div class="card-header bg-primary text-white">
-      <h3 class="mb-0">Підтвердження замовлення</h3>
+      <h3 class="mb-0">Order details №{{ order.id }}</h3>
     </div>
     <div class="card-body">
-      <h5 class="card-title">Дані доставки</h5>
-      <p><strong>Отримувач:</strong> {{ order.user.username }}</p>
-      <p><strong>Адреса:</strong> {{ order.user.address }}</p>
-      <p><strong>Очікувана дата прибуття:</strong> 26 червня 2025</p>
+      <h5 class="card-title">Delivery details</h5>
+      <p><strong>Recipient:</strong> {{ order.user.username }}</p>
+      <p><strong>Address:</strong> {{ order.user.address }}</p>
+      <p><strong>Order date:</strong> {{ order.create_time }}</p>
+      <p><strong>Expected arrival date:</strong> 26 01 2025</p>
     </div>
   </div>
 
   <div class="card shadow-sm">
     <div class="card-header bg-success text-white">
-      <h4 class="mb-0">Статус доставки</h4>
+      <h4 class="mb-0">Goods</h4>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        {% for ordergood in order.ordergood_set.all %}
+        <li class="list-group-item">
+          ✅ <strong>{{ ordergood.good.title }}</strong> {{ ordergood.quantity }} pcs. — {{ ordergood.sum }}$
+        </li>
+        {% endfor %}
+          <li class="list-group-item">
+        <strong>Total sum: {{ order.total_sum }}$ </strong> 
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">Delivery status</h4>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          ✅ <strong>Замовлення прийнято</strong> — 24 червня, 10:00
+          ✅ <strong>Order accepted</strong> — 24 01 10:00
         </li>
         <li class="list-group-item">
-          ✅ <strong>Упаковано на складі</strong> — 24 червня, 14:00
+          ✅ <strong>Packed in stock</strong> — 24 01 14:00
         </li>
         <li class="list-group-item">
-          🔄 <strong>У дорозі (м. Полтава)</strong> — 25 червня, 09:00
+          🔄 <strong>On the road (Poltava)</strong> — 25 01 09:00
         </li>
         <li class="list-group-item text-muted">
-          ⏳ <strong>Очікується в м. Київ</strong> — 26 червня
+          ⏳ <strong>Expected in Kyiv</strong> — 26 01
         </li>
       </ul>
       <div class="mt-4">
         <div class="progress" style="height: 20px;">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" 
-               role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-            60% доставлено
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%;"
+            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+            60% delivered
           </div>
         </div>
       </div>

@@ -20,6 +20,31 @@ def goods(request, mode):
     page_number = int(request.GET.get('page', 1))
     per_page = 4 
 
+    def next_page(good_paginator):
+        if good_paginator.has_next():
+            params = request.GET.copy()
+            params.setlist('page', [good_paginator.next_page_number()])
+            return f'{request.path}?{params.urlencode()}'
+    
+    def previous_page(good_paginator):
+        if good_paginator.has_previous():
+            params = request.GET.copy()
+            params.setlist('page', [good_paginator.previous_page_number()])
+            return f'{request.path}?{params.urlencode()}'
+    
+    def page_transition(good_paginator):
+        for page in good_paginator.paginator.page_range:
+            params = request.GET.copy()
+            params.setlist('page', [page])
+            yield page, f'{request.path}?{params.urlencode()}'
+
+    def filter_categories_params(categoryis):
+        for category in categoryis:
+            params = request.GET.copy()
+            params.setlist('cate', [category.id])
+            yield category.title, f'{request.path}?{params.urlencode()}', category.id
+
+
     if mode == 'saved' and request.user.is_authenticated:
         goods = Good.objects.filter(id__in=SaveGood.objects.filter(user=request.user).values_list("good_id", flat=True))
         paginator = Paginator(goods, per_page)
@@ -42,6 +67,9 @@ def goods(request, mode):
             "page_obj": good_paginator,
             'save': False,
             'mode': mode,
+            'next_page': next_page(good_paginator),
+            'previous_page': previous_page(good_paginator),
+            'page_range': page_transition(good_paginator),
         }
     else:
         cate = int(request.GET.get('cate', 0))
@@ -57,7 +85,6 @@ def goods(request, mode):
 
         goods_ids = [good.id for good in good_paginator]
 
-        category = Category.objects.all()
         if request.user.is_authenticated:
 
             good_with_save_info = [
@@ -77,7 +104,10 @@ def goods(request, mode):
             "page_obj": good_paginator,
             'save': True,
             'mode': mode,
-            'categories': category,
+            'categories': filter_categories_params(Category.objects.all()),
+            'next_page': next_page(good_paginator),
+            'previous_page': previous_page(good_paginator),
+            'page_range': page_transition(good_paginator),
         }
     return render(request, "catalog.html", context)
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import User, Basket, SaveGood, Comment
+from .models import User, Basket, SaveGood
 
 
 class BasketInline(admin.TabularInline):

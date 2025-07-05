@@ -7,6 +7,9 @@ from image_cropping import ImageRatioField
 class Category(models.Model):
     title = models.CharField(max_length=20)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.title
 

@@ -2,80 +2,87 @@
 
 {% block content %}
 <div class="container py-5">
-  <h2 class="mb-4">Мої замовлення</h2>
+  <h2 class="mb-4">My orders</h2>
 
   <ul class="nav nav-tabs" id="orderTabs" role="tablist">
-    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#shipped">У дорозі</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#new">Очікує оплату</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivered">Отримані</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#processing">Оформляється</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancelled">Скасовані</button></li>
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#shipped">In Transit</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#new">Awaiting Payment</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivered">Received</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#processing">Processing</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancelled">Cancelled</button></li>
   </ul>
 
   <div class="tab-content p-4 bg-white border border-top-0" id="orderTabsContent">
 
-    <!-- У дорозі -->
+    <!-- In Transit -->
     <div class="tab-pane fade show active" id="shipped">
       {% for order in orders_shipped %}
-        <h5>Замовлення #{{ order.id }}</h5>
-        <p>Товари: {{ order.total_items }} шт. — {{ order.total_price }}₴</p>
-        <p><strong>Статус:</strong> У дорозі ({{ order.city }})</p>
-        <p><strong>Очікується:</strong> {{ order.expected_date }}</p>
-        <a href="{% url 'order:order' order.id %}" class="btn btn-primary btn-sm">Деталі</a>
+        <h5>Order #{{ order.id }}</h5>
+        <p>Goods:<br> {% for order_good in order.ordergood_set.all %} {{ order_good.good.title }} {{ order_good.quantity }} шт. — {{ order_good.sum }}₴ <br> {% endfor %}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Total sum:</strong> {{ order.total_sum }}</p>
+        <p><strong>Expected:</strong> tomorrow</p>
+        <a href="{% url 'order:single_order' order.id %}" class="btn btn-primary btn-sm">Details</a>
         <hr>
       {% empty %}
-        <p>Немає замовлень у дорозі.</p>
+        <p>No orders in transit.</p>
       {% endfor %}
     </div>
 
-    <!-- Очікує оплату -->
+    <!-- Awaiting Payment -->
     <div class="tab-pane fade" id="new">
-      {% for order in orders_new %}
-        <h5>Замовлення #{{ order.id }}</h5>
-        <p>Товари: {{ order.total_items }} шт. — {{ order.total_price }}₴</p>
-        <p><strong>Статус:</strong> Очікує оплату</p>
-        <a href="#" class="btn btn-warning btn-sm">Оплатити зараз</a>
+      {% for order in orders_on_hold_new %}
+        <h5>Order #{{ order.id }}</h5>
+        <p>Goods: <br> {% for order_good in order.ordergood_set.all %} {{ order_good.good.title }} {{ order_good.quantity }} шт. — {{ order_good.sum }}₴ <br> {% endfor %}</p>
+        <p><strong>Статус:</strong> {{ order.status }}</p>
+        <p><strong>Total sum:</strong> {{ order.total_sum }}</p>
+        <a href="{% url 'order:single_order' order.id %}" class="btn btn-primary btn-sm">Details</a>
+        <a href="#" class="btn btn-warning btn-sm">Pay</a>
         <hr>
       {% empty %}
-        <p>Немає неоплачених замовлень.</p>
+        <p>There are no unpaid orders.</p>
       {% endfor %}
     </div>
 
     <!-- Доставлено -->
     <div class="tab-pane fade" id="delivered">
       {% for order in orders_delivered %}
-        <h5>Замовлення #{{ order.id }}</h5>
-        <p>Товари: {{ order.total_items }} шт. — {{ order.total_price }}₴</p>
-        <p><strong>Статус:</strong> Доставлено {{ order.delivered_at|date:"d.m.Y" }}</p>
-        <a href="#" class="btn btn-outline-primary btn-sm">Повторити</a>
+        <h5>Order #{{ order.id }}</h5>
+        <p>Goods: <br> {% for order_good in order.ordergood_set.all %} {{ order_good.good.title }} {{ order_good.quantity }} шт. — {{ order_good.sum }}₴ <br> {% endfor %}</p>
+        <p><strong>Статус:</strong> {{ order.status }}</p>
+        <p><strong>Total sum:</strong> {{ order.total_sum }}</p>
+        <a href="{% url 'order:single_order' order.id %}" class="btn btn-primary btn-sm">Details</a>
         <hr>
       {% empty %}
-        <p>Немає отриманих замовлень.</p>
+        <p>No orders received.</p>
       {% endfor %}
     </div>
 
-    <!-- Оформляється -->
+    <!-- Processing -->
     <div class="tab-pane fade" id="processing">
       {% for order in orders_processing %}
-        <h5>Замовлення #{{ order.id }}</h5>
-        <p>Товари: {{ order.total_items }} шт. — {{ order.total_price }}₴</p>
-        <p><strong>Статус:</strong> Очікує підтвердження</p>
-        <a href="#" class="btn btn-success btn-sm">Завершити</a>
+        <h5>Order #{{ order.id }}</h5>
+        <p>Goods: <br> {% for order_good in order.ordergood_set.all %} {{ order_good.good.title }} {{ order_good.quantity }} шт. — {{ order_good.sum }}₴ <br> {% endfor %}</p>
+        <p><strong>Статус:</strong> {{ order.status }}</p>
+        <p><strong>Total sum:</strong> {{ order.total_sum }}</p>
+        <a href="{% url 'order:single_order' order.id %}" class="btn btn-primary btn-sm">Details</a>
         <hr>
       {% empty %}
-        <p>Немає замовлень, що оформляються.</p>
+        <p>There are no orders being placed.</p>
       {% endfor %}
     </div>
 
-    <!-- Скасовані -->
+    <!-- Cancelled -->
     <div class="tab-pane fade" id="cancelled">
-      {% for order in orders_order_failed %}
-        <h5>Замовлення #{{ order.id }}</h5>
-        <p>Товари: {{ order.good.title }}  шт. — {{ order.total_price }}₴</p>
-        <p><strong>Статус:</strong> Скасоване</p>
+      {% for order in orders_cancelled_returned_failed  %}
+        <h5>Order #{{ order.id }}</h5>
+        <p>Goods: <br> {% for order_good in order.ordergood_set.all %} {{ order_good.good.title }} {{ order_good.quantity }} шт. — {{ order_good.sum }}₴ <br> {% endfor %}</p>
+        <p><strong>Статус:</strong> {{ order.status }}</p>
+        <p><strong>Total sum:</strong> {{ order.total_sum }}</p>
+        <a href="{% url 'order:single_order' order.id %}" class="btn btn-primary btn-sm">Details</a>
         <hr>
       {% empty %}
-        <p>Немає скасованих замовлень.</p>
+        <p>There are no canceled orders.</p>
       {% endfor %}
     </div>
 
