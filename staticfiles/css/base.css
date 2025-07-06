@@ -1,0 +1,38 @@
+.card {
+  border-radius: 2%;
+}
+
+.card img {
+  border-radius: 2%;
+}
+
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.paragraph {
+  font-size: 2rem;
+}
+
+.econ {
+  float: right;
+}
+
+nav {
+  width: 100%;
+}
+
+[aligns="right"] {
+  margin-left: auto;
+  margin-right: 0%;
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  [aligns="right"] {
+    margin-left: 0;
+  }
+}
