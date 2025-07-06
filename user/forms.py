@@ -36,6 +36,9 @@ class UserProfileForm(UserChangeForm):
         "placeholder": "Your email",
         "class": "form-control",
     }))
+    phone_number = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={
+        "class": "form-control",
+    }))
     address = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'placeholder': 'Your first address',
         "class": "form-control",
@@ -60,7 +63,7 @@ class UserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "gender", "username", "email", "address", "address2", "image", "city", "zip"]
+        fields = ["first_name", "last_name", "gender", "username", "email", "address", "address2", "image", "city", "zip", 'state', 'phone_number']
         
 
 class CommentForm(forms.ModelForm):

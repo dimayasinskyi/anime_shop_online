@@ -11,7 +11,7 @@
       <div class="card-body">
         <h5 class="card-title">Contact details</h5>
         <p><strong>Name:</strong> {{ request.user.username }}</p>
-        <p><strong>Phone number:</strong>{% if request.user.phone %} {{ request.user.phone }} {% else %} No number {% endif %}</p>
+        <p><strong>Phone number:</strong>{% if request.user.phone_number %} +{{ request.user.phone_number }} {% else %} No number {% endif %}</p>
         <p><strong>Email:</strong>{% if request.user.email %} {{ request.user.email }} {% else %} No email {% endif %}
         </p>
 
