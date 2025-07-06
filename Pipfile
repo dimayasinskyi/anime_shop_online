@@ -13,6 +13,7 @@ easy-thumbnails = "*"
 stripe = "*"
 social-auth-app-django = "*"
 dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 
