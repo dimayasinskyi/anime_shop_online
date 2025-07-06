@@ -12,6 +12,7 @@ django-image-cropping = "*"
 easy-thumbnails = "*"
 stripe = "*"
 social-auth-app-django = "*"
+dotenv = "*"
 
 [dev-packages]
 

@@ -5,16 +5,20 @@
 ## 📸 Screenshots
 
 ### 🏠 Home page
-![Home Page]()
+![Home Page](https://github.com/dimayasinskyi/anime_shop_online/blob/main/static/readme/index.png)
 
 ### 🛍️ Catalog
-![Catalog]()
+![Catalog](https://github.com/dimayasinskyi/anime_shop_online/blob/main/static/readme/catalog.png)
 
 ### 🛒 Cart and Checkout
-![Basket]()
+![Basket](https://github.com/dimayasinskyi/anime_shop_online/blob/main/static/readme/basket.png)
+
+### 🛒 Order
+![Order](https://github.com/dimayasinskyi/anime_shop_online/blob/main/static/readme/orders.png)
 
 ### 👤 User Profile
-![Profile]()
+![Profile](https://github.com/dimayasinskyi/anime_shop_online/blob/main/static/readme/profile.png)
+
 
 ---
 
@@ -46,16 +50,3 @@
 - **Frontend:** HTML, CSS, Bootstrap
 - **Other tools:** Git, GitHub, simple model tests, basic Docker usage
 
----
-
-## ⚙️ How to Run Locally
-
-```bash
-git clone https://github.com/dimayasinskyi/anime_shop_online
-cd anime_shop_online
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pipenv install
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
