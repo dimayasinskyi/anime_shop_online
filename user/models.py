@@ -14,10 +14,10 @@ class User(AbstractUser):
     gender = models.CharField(max_length=30, choices=GENDER_CHOICES, default='no info')
     address = models.TextField(null=True, blank=True)
     address2 = models.TextField(null=True, blank=True)
-    phone_number = models.SmallIntegerField(max_length=17, null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
-    zip = models.SmallIntegerField(null=True, blank=True)
+    zip = models.IntegerField(null=True, blank=True)
 
 
 class BasketQuerySet(models.QuerySet):
