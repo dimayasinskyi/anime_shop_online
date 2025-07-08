@@ -8,3 +8,4 @@ stripe
 social-auth-app-django
 dotenv
 gunicorn
+whitenoise
