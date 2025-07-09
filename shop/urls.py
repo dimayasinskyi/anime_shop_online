@@ -16,6 +16,5 @@ urlpatterns = [
     path('pay/<int:good_id>/', create_checkout_session_good, name='pay_good'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

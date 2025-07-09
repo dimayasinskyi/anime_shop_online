@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary, cloudinary.uploader, cloudinary.api
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
@@ -55,7 +56,18 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'image_cropping',
     'social_django',
+    'cloudinary',
+    'cloudinary_storage',
 ]
+
+# cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET')
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

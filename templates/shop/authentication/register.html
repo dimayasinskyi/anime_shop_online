@@ -18,8 +18,8 @@
     {% endif %}
 
 
-    <button type="submit" class="btn btn-primary">Register</button>
-    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">Register with google</a>
-    <a href="{% url 'user:login' %} " class="btn btn-secondary">Login in</a>
+    <button type="submit" class="btn btn-primary m-1">Register</button>
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary m-1">Register with google</a>
+    <a href="{% url 'user:login' %} " class="btn btn-secondary m-1">Login in</a>
 </form>
 {% endblock %}

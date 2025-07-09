@@ -7,8 +7,8 @@
     <h2>Login</h2>
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Login in</button>
-    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">Login in with google</a>
-    <a href="{% url 'user:register' %}" class="btn btn-secondary">Register</a>
+    <button type="submit" class="btn btn-primary m-1">Login in</button>
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary m-1">Login in with google</a>
+    <a href="{% url 'user:register' %}" class="btn btn-secondary m-1">Register</a>
 </form>
 {% endblock %}

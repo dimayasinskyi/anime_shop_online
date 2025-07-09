@@ -14,7 +14,7 @@
             <p class="paragraph">Sel Qty: {{ good.sel_qty }}</p>
             <p class="paragraph">Price: {{ good.price }}$</p>
             <hr>
-            <a href="{% url 'shop:pay_good' good.pk %}" class="btn btn-primary">Buy</a>
+            <a href="{% url 'order:check_order' good.pk %}" class="btn btn-primary">Buy</a>
             <a href="{% url 'user:save_add' good.id %}"
                 class="btn {% if save %} btn-primary {% else %} btn-secondary {% endif %}">Save
             </a>

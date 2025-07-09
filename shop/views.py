@@ -156,7 +156,7 @@ def create_checkout_session(request):
             for good_in_basket in good_in_vaskets
         ],
         mode='payment',
-        success_url='http://127.0.0.1:8000/order/order/list/',
+        success_url='http://127.0.0.1:8000/success/',
         cancel_url='http://localhost:8000/cancel/',
     )
     return redirect(session.url, code=303)

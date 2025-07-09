@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from image_cropping import ImageRatioField
-
+from cloudinary.uploader import upload
 
 class Category(models.Model):
     title = models.CharField(max_length=20)
@@ -22,7 +22,19 @@ class Good(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(null=True, upload_to='goods/image/')
     cropping = ImageRatioField('image', '300x300')
+    cloudinary_url = models.URLField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        from django.core.files.storage import default_storage
+
+        super().save(*args, **kwargs)
+
+        if self.image and not self.cloudinary_url:
+            local_path = self.image.path
+            result = upload(local_path)
+            self.cloudinary_url = result['secure_url']
+            super().save(update_fields=['cloudinary_url'])
 
     def clean(self):
         if self.sel_qty > self.com_qty:
