@@ -50,3 +50,6 @@
 - **Frontend:** HTML, CSS, Bootstrap
 - **Other tools:** Git, GitHub, simple model tests, basic Docker usage
 
+## Superuser
+- **name:** Dima
+- **password:** 11
