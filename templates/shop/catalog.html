@@ -9,7 +9,7 @@
   {% if mode != 'saved' %}
   <nav style="text-align: center;">
     <form method="get">
-      <input type="text" name="find" placeholder="Name good"
+      <input type="text" name="find" placeholder="Product name"
         class="form-control mt-2" value="{{ request.GET.find }}"></input>
         {% for key, value in request.GET.items %}
         {% if key != 'find' %}
@@ -65,7 +65,7 @@
         </div>
       </div>
       {% empty %}
-      Don't find this good
+      Product not found
       {% endfor %}
     </div>
   </div>
